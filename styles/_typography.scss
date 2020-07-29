@@ -1,0 +1,66 @@
+$primary-color: red;
+$secondary-color: blue;
+$tertiary-color: yellow;
+$accent-color: green;
+$light-color: #fafafa; //near-white
+$dark-color: #191919; //eerie black
+$font-family: 'Space Mono',
+monospace;
+$secondary-font: 'Roboto',
+sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+label,
+input,
+button {
+    font-family: $font-family;
+}
+
+h1 {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+h3 {
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+//body text
+input[type=radio],
+p {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    letter-spacing: .01rem;
+}
+
+button {
+    font-size: 2.5rem;
+    text-align: center;
+    color: $primary-color;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: 4px solid transparent;
+    background-color: $light-color;
+    &:hover {
+        border: 4px solid $accent-color;
+        color: $primary-color;
+    }
+}
+
+a {
+    font-size: 1.8rem;
+    display: inline-block;
+}

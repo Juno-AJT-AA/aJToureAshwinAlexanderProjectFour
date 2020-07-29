@@ -1,0 +1,58 @@
+// introduction section
+.quizIntro {
+    .quizShortDesc {
+        background-color: $primary-color;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        h2 {
+            color: $light-color;
+        }
+    }
+    .quizLongDesc {
+        padding: 20px;
+        background-color: $tertiary-color;
+    }
+}
+
+// the quiz questions and associated options
+.movieQuiz {
+    .movieQuestion {
+        background-color: $light-color;
+        padding-bottom: 50px;
+        .questionRow {
+            justify-content: space-between;
+            background-color: $accent-color;
+            a {
+                padding: 10px;
+            }
+        }
+        h3 {
+            font-weight: bold;
+            padding: 20px;
+        }
+        label {
+            font-size: 2rem;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+        .submitContainer {
+            justify-content: center;
+            padding-top: 40px;
+            .btnSubmit {
+                background-color: $primary-color;
+                color: $light-color;
+                font-weight: 900;
+                margin: 5px;
+            }
+        }
+        .movieOption {
+            padding: 20px 0px 0px 20px;
+            p {
+                padding-top: 10px;
+                font-size: 1.5rem;
+                ;
+            }
+        }
+    }
+}
