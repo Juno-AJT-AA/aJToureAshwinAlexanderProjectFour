@@ -354,7 +354,7 @@ img {
   height: auto;
 }
 
-.flex-row {
+.flexRow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -364,7 +364,7 @@ img {
           flex-direction: row;
 }
 
-.flex-column {
+.flexColumn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -414,7 +414,7 @@ p {
 button {
   font-size: 2.5rem;
   text-align: center;
-  color: red;
+  color: #6fb5d9;
   text-transform: uppercase;
   padding: 10px 20px;
   border: 4px solid transparent;
@@ -422,8 +422,8 @@ button {
 }
 
 button:hover {
-  border: 4px solid green;
-  color: red;
+  border: 4px solid #ddceeb;
+  color: #6fb5d9;
 }
 
 a {
@@ -447,19 +447,19 @@ footer {
   padding-top: 40px;
 }
 
-footer .credits {
-  background-color: red;
+footer .readMe {
+  background-color: #6fb5d9;
   text-align: center;
   padding: 5px;
 }
 
-footer .credits p,
-footer .credits a {
+footer .readMe p,
+footer .readMe a {
   color: #fafafa;
 }
 
 .quizIntro .quizShortDesc {
-  background-color: red;
+  background-color: #6fb5d9;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -475,7 +475,7 @@ footer .credits a {
 
 .quizIntro .quizLongDesc {
   padding: 20px;
-  background-color: yellow;
+  background-color: #e2e879;
 }
 
 .movieQuiz .movieQuestion {
@@ -487,7 +487,7 @@ footer .credits a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: green;
+  background-color: #ddceeb;
 }
 
 .movieQuiz .movieQuestion .questionRow a {
@@ -513,7 +513,7 @@ footer .credits a {
 }
 
 .movieQuiz .movieQuestion .submitContainer .btnSubmit {
-  background-color: red;
+  background-color: #6fb5d9;
   color: #fafafa;
   font-weight: 900;
   margin: 5px;
