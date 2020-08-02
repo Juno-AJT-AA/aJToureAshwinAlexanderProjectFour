@@ -1,57 +1,96 @@
 // creating a namespace
 const totallyRadMovieQuiz = {};
 
-totallyRadMovieQuiz.movieResults = [];
+totallyRadMovieQuiz.movieResults = []; //all movie results stored here
+totallyRadMovieQuiz.nonNinetiesAPIResults = []; //non90s movie results from API Call stored here
+totallyRadMovieQuiz.NinetiesAPIResults = []; //90s movie results from API Call stored here
 
+totallyRadMovieQuiz.nonNinetiesMovieArray = []; //non90s movie array
+totallyRadMovieQuiz.NinetiesMovieArray = []; //90s movie array
+
+
+//API Call URLs
 totallyRadMovieQuiz.eightiesUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01';
 totallyRadMovieQuiz.oughtsUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2003-12-31&primary_release_date.gte=2000-01-01';
-// totallyRadMovieQuiz.ninetiesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01`;
+totallyRadMovieQuiz.ninetiesURl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01&page='
 
 
+//method to connect to The Movies DB API and retrieve 20 movies i.e 1 page
+totallyRadMovieQuiz.movieApiCall = function(apiUrl) {
+
+    return $.ajax({
+        url: apiUrl,
+        dataType: 'json',
+        method: 'GET'
+    });
+}
+
+//gets non 90s movies from the API and writes it to the non 90s movie array
+totallyRadMovieQuiz.GetNonNinetiesMovies = function() {
+
+    //retrieve '80s and '00s movies from the api
+    totallyRadMovieQuiz.nonNinetiesAPIResults.push(totallyRadMovieQuiz.movieApiCall(totallyRadMovieQuiz.eightiesUrl));
+    totallyRadMovieQuiz.nonNinetiesAPIResults.push(totallyRadMovieQuiz.movieApiCall(totallyRadMovieQuiz.oughtsUrl));
+
+    $.when(...totallyRadMovieQuiz.nonNinetiesAPIResults)
+        .then((...nonNinetiesPromises) => {
+
+            let movieArray = nonNinetiesPromises.map(movies => {
+                //console.log(movies[0].results);
+                return movies[0].results;
+            });
+
+            totallyRadMovieQuiz.movieResults = movieArray;
+
+            console.log(totallyRadMovieQuiz.movieResults);
+
+            return totallyRadMovieQuiz.movieResults = movieArray;
+        }).then(() => {
+            console.log(' final then');
+            console.log(totallyRadMovieQuiz.movieResults);
+
+        });
+}
+
+
+//input: Array length, Output: random array index
+totallyRadMovieQuiz.randomMovieIndex = (movieArrayLength) => {
+    let movieIndex = Math.floor(Math.random(0, 1) * movieArrayLength);
+    return movieIndex;
+}
 
 
 //init function
 totallyRadMovieQuiz.init = function() {
 
-    totallyRadMovieQuiz.movieApiCall(totallyRadMovieQuiz.eightiesUrl); //eighties 
-    totallyRadMovieQuiz.movieApiCall(totallyRadMovieQuiz.oughtsUrl); //2000s
+    totallyRadMovieQuiz.GetNonNinetiesMovies();
 
-    for (i = 1; i < 7; i++) {
-        totallyRadMovieQuiz.ninetiesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${i}&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01`;
-        totallyRadMovieQuiz.movieApiCall(totallyRadMovieQuiz.ninetiesUrl);
-    }
-    console.log(totallyRadMovieQuiz.movieResults);
+
+
+    // console.log(totallyRadMovieQuiz.movieResults);
+
 
 };
 
 
-//function to connect to The Movies DB API and retrieve 20 movies i.e 1 page
-totallyRadMovieQuiz.movieApiCall = function(apiUrl) {
-    $.ajax({
-        url: apiUrl,
-        method: 'GET',
-        dataType: 'JSON',
-    }).then(function(object) {
+$(document).ready(function() {
 
-        totallyRadMovieQuiz.movieResults.push(object.results);
+    totallyRadMovieQuiz.init();
 
-
-    });
-}
+});
 
 
 
 
-//console.log(totallyRadMovieQuiz.getMovies.responseJSON.results[0]);
 
+
+// done done done
 //call the api and retrieve movies  from 2000 - 2003 THAT have a movie poster sorted by popularity 
-
 //call the api and retrieve movies from 1987 - 1989/12 THAT have a movie poster sorted by popularity 
-
-
-
 //call the api and retrieve movies from 1990 - 1999 THAT have a movie poster sorted by popularity 
+// done done done
 
+// get four random movies
 //movie object = poster link, title, release date, description
 //array 1 = api call 1 + api call 2  (30) from non90s 20+20 
 //array 2 = api call 3  (30*4) from 90s 20*6 
@@ -82,11 +121,6 @@ totallyRadMovieQuiz.movieApiCall = function(apiUrl) {
 // BUTTON SUBMIT TEXT CHANGES TO "PLAY AGAIN!"
 
 
-$(document).ready(function() {
-
-    totallyRadMovieQuiz.init();
-
-});
 
 // totallyRadMovieQuiz.baseUrl = 'https://image.tmdb.org/t/p/w780';
 //totallyRadMovieQuiz.eightiesUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01';
