@@ -1,0 +1,16 @@
+.notes {
+    padding: 15px;
+    h2 {
+        padding: 20px 0px;
+        margin: 0px;
+    }
+    p,
+    a,
+    ul li {
+        font-size: 1.2rem;
+        font-family: $secondary-font;
+    }
+    p {
+        line-height: 1.2rem;
+    }
+}

@@ -124,16 +124,31 @@ radMovieQuiz.getRandomMovies = (numMovies, sourceArray) => {
     return randomMovies;
 }
 
+//slow scroll function
+radMovieQuiz.scrollAway = function(from, to) {
+    $(from).click(function(e) {
+        e.preventDefault();
+        $("html").animate({
+            scrollTop: $(to).offset().top
+        }, 'slow');
+    });
+}
+
+radMovieQuiz.eventListener = function() {
+    //event listener for the Get Started button
+    radMovieQuiz.scrollAway(".btnStart", '.movieQuiz');
+}
 
 
 
 //init function - on first load
 radMovieQuiz.init = async function() {
-    await radMovieQuiz.GetMovies();
+    //  await radMovieQuiz.GetMovies(); //wait for all the results from the multiple API calls
     console.log('going in');
-    radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
-    radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
-    radMovieQuiz.loadQuiz();
+    //radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
+    //radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
+    //radMovieQuiz.loadQuiz();
+    radMovieQuiz.eventListener();
 
 
 
