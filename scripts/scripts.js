@@ -1,7 +1,8 @@
-// creating a namespace
+//creating a namespace
 const radMovieQuiz = {};
+radMovieQuiz.apikey = 'bbdeeb2ee8dee00541ba5f527454ce0e';
+radMovieQuiz.baseImageURL = 'https://image.tmdb.org/t/p/w500'; //append poster path returned from API Call to this URL to get full image
 
-radMovieQuiz.allAPIResults = []; //all movie results from API Call stored here
 radMovieQuiz.nonNinetiesAPIResults = []; //non90s movie results (promises) from API Call stored here
 radMovieQuiz.ninetiesAPIResults = []; //90s movie results (promises) from API Call stored here
 
@@ -10,13 +11,13 @@ radMovieQuiz.NinetiesMovieArray = []; //90s movie array
 
 
 //The Movie Database API Call URLs. See themoviedb.org for API docs
-radMovieQuiz.eightiesUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01';
-radMovieQuiz.oughtsUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2003-12-31&primary_release_date.gte=2000-01-01';
+radMovieQuiz.eightiesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01`;
+radMovieQuiz.oughtsUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2003-12-31&primary_release_date.gte=2000-01-01`;
 radMovieQuiz.nonNinetiesURLArray = [];
-radMovieQuiz.ninetiesURl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01&page=';
+radMovieQuiz.ninetiesURl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01&page=`;
 radMovieQuiz.ninetiesURLArray = [];
 
-//method to append page number to 90s movies API call parameters
+//helper method to append page number to 90s movies API call parameters
 radMovieQuiz.generateNinetiesURLArray = (baseUrl, numPages) => {
     for (let i = 1; i < numPages + 1; i++) {
         radMovieQuiz.ninetiesURLArray.push(baseUrl + i);
@@ -60,12 +61,11 @@ radMovieQuiz.getNinetiesPromises = function() {
 //gets movies from the API and writes it to a non 90s movie array and a 90s movie array
 radMovieQuiz.GetMovies = async() => {
 
-    radMovieQuiz.nonNinetiesAPIResults = radMovieQuiz.getNonNinetiesPromises();
-    radMovieQuiz.NinetiesAPIResults = radMovieQuiz.getNinetiesPromises();
-    radMovieQuiz.allAPIResults = radMovieQuiz.ninetiesAPIResults.concat(radMovieQuiz.nonNinetiesAPIResults);
+    radMovieQuiz.nonNinetiesAPIResults = radMovieQuiz.getNonNinetiesPromises(); //2
+    radMovieQuiz.NinetiesAPIResults = radMovieQuiz.getNinetiesPromises(); //6
 
     //extracting non 90s movies
-    await $.when(...radMovieQuiz.nonNinetiesAPIResults)
+    await $.when(...radMovieQuiz.nonNinetiesAPIResults) //2
         .then((...nonNinetiesPromises) => {
 
             radMovieQuiz.movieResults = nonNinetiesPromises.map(movies => {
@@ -79,7 +79,7 @@ radMovieQuiz.GetMovies = async() => {
         });
 
     //extracting 90s movies
-    await $.when(...radMovieQuiz.ninetiesAPIResults)
+    await $.when(...radMovieQuiz.ninetiesAPIResults) //6
         .then((...NinetiesPromises) => {
 
             radMovieQuiz.movieResults = NinetiesPromises.map(movies => {
@@ -94,15 +94,13 @@ radMovieQuiz.GetMovies = async() => {
 
 //input: number of random numbers requested, Max number Output: array of one or more random numbers 
 radMovieQuiz.randomIndexGenerator = (howMany, movieArrayLength) => {
-    let arr = [];
-    while (arr.length < howMany) {
+    let arrayofIndexes = [];
+    while (arrayofIndexes.length < howMany) {
         let r = Math.floor(Math.random() * movieArrayLength);
-        if (arr.indexOf(r) === -1) arr.push(r);
+        if (arrayofIndexes.indexOf(r) === -1) arrayofIndexes.push(r);
     }
-
-    return arr;
+    return arrayofIndexes;
 }
-
 
 //input: number of random movies requested along with the list
 //output: returns requested random movies from a list
@@ -124,6 +122,9 @@ radMovieQuiz.getRandomMovies = (numMovies, sourceArray) => {
     return randomMovies;
 }
 
+
+
+
 //slow scroll function
 radMovieQuiz.scrollAway = function(from, to) {
     $(from).click(function(e) {
@@ -134,25 +135,47 @@ radMovieQuiz.scrollAway = function(from, to) {
     });
 }
 
+//input: two arrays with correct and incorrect movies list
+//output: write to page
+radMovieQuiz.displayQuiz = (correctMovies, incorrectMovies) => {
+    console.log('about to display quiz');
+    let allmovies = [...correctMovies, ...incorrectMovies];
+
+    if (allmovies.length == 4) {
+        console.log(allmovies[0].poster_path);
+        $('.movieOptionOne img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[0].poster_path));
+        $('.movieOptionTwo img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[1].poster_path));
+        $('.movieOptionThree img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[2].poster_path));
+        $('.movieOptionFour img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[3].poster_path));
+    }
+
+}
+
 radMovieQuiz.eventListener = function() {
     //event listener for the Get Started button
     radMovieQuiz.scrollAway(".btnStart", '.movieQuiz');
+
+
+
+    //on submitting the form
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+        $(".btnSubmit").hide();
+        $(".btnReset").show();
+    });
 }
 
 
 
 //init function - on first load
 radMovieQuiz.init = async function() {
-    //  await radMovieQuiz.GetMovies(); //wait for all the results from the multiple API calls
-    console.log('going in');
-    //radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
-    //radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
-    //radMovieQuiz.loadQuiz();
+    await radMovieQuiz.GetMovies(); //wait for all the results from the multiple API calls
+    let ninetiesMovies = radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
+    let nonNinetiesMovies = radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
+    radMovieQuiz.displayQuiz(ninetiesMovies, nonNinetiesMovies);
+
+
     radMovieQuiz.eventListener();
-
-
-
-
 };
 
 
