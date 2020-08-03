@@ -24,11 +24,13 @@
         background-color: $light-color;
         .optionsRow {
             justify-content: center;
-            img {
+            input[type=image] {
                 border: 8px solid transparent;
-                &:hover,
+                &:hover {
+                    border: $hover-color solid 8px;
+                }
                 &:focus {
-                    border: 8px solid lightgreen;
+                    border: $focus-color solid 8px;
                 }
             }
         }
