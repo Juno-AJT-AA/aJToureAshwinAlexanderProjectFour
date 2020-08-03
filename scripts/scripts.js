@@ -57,7 +57,7 @@ radMovieQuiz.getNinetiesPromises = function() {
     return radMovieQuiz.ninetiesAPIResults;
 }
 
-//gets movies from the API and writes it to non 90s movie array and a 90s movie array
+//gets movies from the API and writes it to a non 90s movie array and a 90s movie array
 radMovieQuiz.GetMovies = async() => {
 
     radMovieQuiz.nonNinetiesAPIResults = radMovieQuiz.getNonNinetiesPromises();
@@ -88,26 +88,56 @@ radMovieQuiz.GetMovies = async() => {
             return radMovieQuiz.movieResults;
         })
         .done(function(movieResults) {
-            console.log('90s movie results');
             radMovieQuiz.ninetiesMovieArray = movieResults;
         });
 }
 
-//input: Array length, Output: random array index
-radMovieQuiz.randomMovieIndex = (movieArrayLength) => {
-    let movieIndex = Math.floor(Math.random(0, 1) * movieArrayLength);
-    return movieIndex;
+//input: number of random numbers requested, Max number Output: array of one or more random numbers 
+radMovieQuiz.randomIndexGenerator = (howMany, movieArrayLength) => {
+    let arr = [];
+    while (arr.length < howMany) {
+        let r = Math.floor(Math.random() * movieArrayLength);
+        if (arr.indexOf(r) === -1) arr.push(r);
+    }
+
+    return arr;
 }
 
-//init function
+
+//input: number of random movies requested along with the list
+//output: returns requested random movies from a list
+radMovieQuiz.getRandomMovies = (numMovies, sourceArray) => {
+    let tempMovieList = [];
+    let randomMovies = [];
+
+    //first consolidate all the movies into one array
+    for (let i = 0; i < sourceArray.length; i++) {
+        tempMovieList.push(...sourceArray[i]);
+    }
+
+    //next extract X random movies from the array
+    let indexArray = radMovieQuiz.randomIndexGenerator(numMovies, tempMovieList.length);
+    for (j = 0; j < indexArray.length; j++) {
+        randomMovies.push(tempMovieList[indexArray[j]]);
+    }
+    console.log(randomMovies);
+    return randomMovies;
+}
+
+
+
+
+//init function - on first load
 radMovieQuiz.init = async function() {
-    console.log('init commences');
     await radMovieQuiz.GetMovies();
-    console.log(radMovieQuiz.ninetiesMovieArray);
-    console.log(radMovieQuiz.nonNinetiesMovieArray);
-    console.log('init finishes');
-    // radMovieQuiz.GetNonNinetiesMovies();
-    // console.log(totallyRadMovieQuiz.movieResults);
+    console.log('going in');
+    radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
+    radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
+    radMovieQuiz.loadQuiz();
+
+
+
+
 };
 
 
@@ -120,12 +150,8 @@ $(document).ready(function() {
 
 
 
-// done done done
-//call the api and retrieve movies  from 2000 - 2003 THAT have a movie poster sorted by popularity 
-//call the api and retrieve movies from 1987 - 1989/12 THAT have a movie poster sorted by popularity 
-//call the api and retrieve movies from 1990 - 1999 THAT have a movie poster sorted by popularity 
-// done done done
 
+//done
 // get four random movies
 //movie object = poster link, title, release date, description
 //array 1 = api call 1 + api call 2  (30) from non90s 20+20 
@@ -134,6 +160,9 @@ $(document).ready(function() {
 //>>>>>START FROM HERE ON PLAY AGAIN
 
 //select three RANDOM movies from array 2 and  1 RANDOM movie from array 1
+//done
+
+
 // CONST MOVIE1, MOVIE2, MOVIE3, CORRECTOPTION
 //display onto the page
 //jquery append li img (add on class to give )
@@ -159,14 +188,3 @@ $(document).ready(function() {
 
 
 // totallyRadMovieQuiz.baseUrl = 'https://image.tmdb.org/t/p/w780';
-//totallyRadMovieQuiz.eightiesUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01';
-//totallyRadMovieQuiz.ninetiessUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01';
-//totallyRadMovieQuiz.oughtsUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=bbdeeb2ee8dee00541ba5f527454ce0e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2003-12-31&primary_release_date.gte=2000-01-01';
-
-//     totallyRadMovieQuiz.getMovies = $.ajax({
-//         url: totallyRadMovieQuiz.url,
-//         method: 'GET',
-//         dataType: 'JSON',
-//     });
-
-//     console.log(totallyRadMovieQuiz.getMovies);
