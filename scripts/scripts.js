@@ -1,7 +1,7 @@
 //creating a namespace
 const radMovieQuiz = {};
 radMovieQuiz.apikey = 'bbdeeb2ee8dee00541ba5f527454ce0e';
-radMovieQuiz.baseImageURL = 'https://image.tmdb.org/t/p/w500'; //append poster path returned from API Call to this URL to get full image
+radMovieQuiz.baseImageURL = 'https://image.tmdb.org/t/p/w342'; //append poster path returned from API Call to this URL to get full image
 
 radMovieQuiz.nonNinetiesAPIResults = []; //non90s movie results (promises) from API Call stored here
 radMovieQuiz.ninetiesAPIResults = []; //90s movie results (promises) from API Call stored here
@@ -118,7 +118,7 @@ radMovieQuiz.getRandomMovies = (numMovies, sourceArray) => {
     for (j = 0; j < indexArray.length; j++) {
         randomMovies.push(tempMovieList[indexArray[j]]);
     }
-    console.log(randomMovies);
+
     return randomMovies;
 }
 
@@ -137,16 +137,12 @@ radMovieQuiz.scrollAway = function(from, to) {
 
 //input: two arrays with correct and incorrect movies list
 //output: write to page
-radMovieQuiz.displayQuiz = (correctMovies, incorrectMovies) => {
-    console.log('about to display quiz');
-    let allmovies = [...correctMovies, ...incorrectMovies];
-
-    if (allmovies.length == 4) {
-        console.log(allmovies[0].poster_path);
-        $('.movieOptionOne img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[0].poster_path));
-        $('.movieOptionTwo img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[1].poster_path));
-        $('.movieOptionThree img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[2].poster_path));
-        $('.movieOptionFour img').attr("src", radMovieQuiz.baseImageURL.concat(allmovies[3].poster_path));
+radMovieQuiz.displayQuiz = (arrayMovies) => {
+    if (arrayMovies.length == 4) {
+        $('.movieOptionOne img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[0].poster_path));
+        $('.movieOptionTwo img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[1].poster_path));
+        $('.movieOptionThree img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[2].poster_path));
+        $('.movieOptionFour img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[3].poster_path));
     }
 
 }
@@ -156,6 +152,10 @@ radMovieQuiz.eventListener = function() {
     radMovieQuiz.scrollAway(".btnStart", '.movieQuiz');
 
 
+    $('.movieOption img').on('click', function(e) {
+        e.preventDefault();
+        alert('reached here');
+    });
 
     //on submitting the form
     $('form').on('submit', function(e) {
@@ -172,7 +172,8 @@ radMovieQuiz.init = async function() {
     await radMovieQuiz.GetMovies(); //wait for all the results from the multiple API calls
     let ninetiesMovies = radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
     let nonNinetiesMovies = radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
-    radMovieQuiz.displayQuiz(ninetiesMovies, nonNinetiesMovies);
+    let allmovies = [...ninetiesMovies, ...nonNinetiesMovies];
+    radMovieQuiz.displayQuiz(allmovies);
 
 
     radMovieQuiz.eventListener();

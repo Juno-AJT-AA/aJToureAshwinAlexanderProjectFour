@@ -22,9 +22,18 @@
 .movieQuiz {
     .movieQuestion {
         background-color: $light-color;
-        padding-bottom: 50px;
+        .optionsRow {
+            justify-content: center;
+            img {
+                border: 8px solid transparent;
+                &:hover,
+                &:focus {
+                    border: 8px solid lightgreen;
+                }
+            }
+        }
         .questionRow {
-            justify-content: space-between;
+            justify-content: center;
             background-color: $accent-color;
             a {
                 padding: 10px;

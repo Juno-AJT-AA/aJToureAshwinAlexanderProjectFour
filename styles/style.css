@@ -483,13 +483,26 @@ footer .readMe a {
 
 .movieQuiz .movieQuestion {
   background-color: #fafafa;
-  padding-bottom: 50px;
+}
+
+.movieQuiz .movieQuestion .optionsRow {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.movieQuiz .movieQuestion .optionsRow img {
+  border: 8px solid transparent;
+}
+
+.movieQuiz .movieQuestion .optionsRow img:hover, .movieQuiz .movieQuestion .optionsRow img:focus {
+  border: 8px solid lightgreen;
 }
 
 .movieQuiz .movieQuestion .questionRow {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: #ddceeb;
 }
 
@@ -531,22 +544,22 @@ footer .readMe a {
   font-size: 1.5rem;
 }
 
-.notes {
+.readMe {
   padding: 15px;
 }
 
-.notes h2 {
+.readMe h2 {
   padding: 20px 0px;
   margin: 0px;
 }
 
-.notes p,
-.notes a,
-.notes ul li {
+.readMe p,
+.readMe a,
+.readMe ul li {
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
 }
 
-.notes p {
+.readMe p {
   line-height: 1.2rem;
 }
