@@ -10,8 +10,10 @@
         }
     }
     .quizLongDesc {
-        padding: 20px;
+        padding: 30px;
         background-color: $tertiary-color;
+        letter-spacing: 0.5rem;
+        color: $dark-text;
     }
 }
 
@@ -30,14 +32,16 @@
             justify-content: center;
             input[type=image] {
                 border: 8px solid transparent;
-
                 &:hover {
                     border: $hover-color solid 8px;
                 }
                 &:focus {
                     border: $focus-color solid 8px;
+                    padding: 50px;
                 }
             }
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
         .questionRow {
             justify-content: center;
@@ -48,7 +52,7 @@
         }
         h3 {
             font-weight: bold;
-            padding: 20px;
+            padding: 30px;
         }
         label {
             font-size: 2rem;

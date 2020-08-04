@@ -1,0 +1,12 @@
+@media (max-width: 830px) {
+    .optionsRow {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 700px) {
+    .optionsRow {
+        display: block;
+    }
+}

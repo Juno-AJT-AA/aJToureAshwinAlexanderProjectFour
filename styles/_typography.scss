@@ -1,12 +1,13 @@
 //color palette inspiration: https://www.pinterest.ca/pin/266838346656849737/
 $primary-color: #6fb5d9;
 $secondary-color: #d99ab3;
-$tertiary-color: #e2e879;
-$accent-color: #ddceeb;
+$tertiary-color: #fdfb76;
+$accent-color: #ff8636;
 $light-color: #fafafa; //near-white
 $dark-color: #191919; //eerie black
 $hover-color: lightgreen; //light green
 $focus-color: #00c9a7;
+$dark-text: 284052;
 $primary-font: 'Days One',
 sans-serif;
 $secondary-font: 'Kanit',
@@ -42,6 +43,8 @@ h2 {
 h3 {
     font-size: 2rem;
     text-transform: uppercase;
+    color: white;
+    font-weight: 500;
 }
 
 //body text
@@ -49,7 +52,7 @@ input[type=radio],
 p {
     font-size: 1.8rem;
     line-height: 2.8rem;
-    letter-spacing: .01rem;
+    letter-spacing: .02rem;
 }
 
 button {
