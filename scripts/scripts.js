@@ -154,8 +154,10 @@ radMovieQuiz.eventListener = function() {
 
     $('.movieOption img').on('click', function(e) {
         e.preventDefault();
-        alert('reached here');
+        $(this).addClass("selected");
     });
+
+
 
     //on submitting the form
     $('form').on('submit', function(e) {
