@@ -19,6 +19,10 @@
 //STYLE FOR SELECTED POSTER
 //STYLE FOR AFTER SUBMIT - TWO CLASSES - WRONG POSTER STYLE (THREE OF THEM) - CORRECT MOVIE STYLE (ONE)
 // the quiz questions and associated options
+.selected {
+    border: 8px solid red;
+}
+
 .movieQuiz {
     .movieQuestion {
         background-color: $light-color;
@@ -26,6 +30,7 @@
             justify-content: center;
             input[type=image] {
                 border: 8px solid transparent;
+
                 &:hover {
                     border: $hover-color solid 8px;
                 }

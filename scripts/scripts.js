@@ -151,7 +151,6 @@ radMovieQuiz.eventListener = function() {
     radMovieQuiz.scrollAway(".btnStart", '.movieQuiz');
 
 
-
     //on submitting the form
     $('form').on('submit', function(e) {
         e.preventDefault();

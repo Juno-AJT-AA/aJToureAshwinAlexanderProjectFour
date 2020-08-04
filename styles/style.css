@@ -389,7 +389,7 @@ p,
 a,
 label,
 input {
-  font-family: "Roboto", sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 h1 {
@@ -482,6 +482,10 @@ footer .readMe a {
   background-color: #e2e879;
 }
 
+.selected {
+  border: 8px solid red;
+}
+
 .movieQuiz .movieQuestion {
   background-color: #fafafa;
 }
@@ -562,7 +566,7 @@ footer .readMe a {
 .readMe a,
 .readMe ul li {
   font-size: 1.2rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 .readMe p {
