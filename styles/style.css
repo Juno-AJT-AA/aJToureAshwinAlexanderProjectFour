@@ -119,7 +119,7 @@ blockquote:after,
 blockquote:before,
 q:after,
 q:before {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -128,15 +128,15 @@ table {
   border-spacing: 0;
 }
 
-input[type=search]::-webkit-search-cancel-button,
-input[type=search]::-webkit-search-decoration,
-input[type=search]::-webkit-search-results-button,
-input[type=search]::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-input[type=search] {
+input[type="search"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   -webkit-box-sizing: content-box;
@@ -196,7 +196,7 @@ form {
 fieldset {
   border: 1px solid silver;
   margin: 0 2px;
-  padding: .35em .625em .75em;
+  padding: 0.35em 0.625em 0.75em;
 }
 
 legend {
@@ -225,9 +225,9 @@ select {
 }
 
 button,
-html input[type=button],
-input[type=reset],
-input[type=submit] {
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
@@ -237,21 +237,21 @@ html input[disabled] {
   cursor: default;
 }
 
-input[type=checkbox],
-input[type=radio] {
+input[type="checkbox"],
+input[type="radio"] {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0;
 }
 
-input[type=search] {
+input[type="search"] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
 
-input[type=search]::-webkit-search-cancel-button,
-input[type=search]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -304,17 +304,17 @@ textarea {
 }
 
 .chromeframe {
-  margin: .2em 0;
+  margin: 0.2em 0;
   background: #ccc;
   color: #000;
-  padding: .2em 0;
+  padding: 0.2em 0;
 }
 
 .clearfix:after {
   visibility: hidden;
   display: block;
   font-size: 0;
-  content: '';
+  content: "";
   clear: both;
   height: 0;
 }
@@ -348,7 +348,7 @@ html {
   margin: 0px auto;
 }
 
-input[type=image],
+input[type="image"],
 img {
   width: 100%;
   display: block;
@@ -373,6 +373,9 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 h1,
@@ -430,6 +433,16 @@ button:hover {
   color: #6fb5d9;
 }
 
+button:focus {
+  border: 4px solid #ddceeb;
+  color: #6fb5d9;
+}
+
+button:disabled {
+  border: 4px solid #ddceeb;
+  color: red;
+}
+
 a {
   font-size: 1.8rem;
   display: inline-block;
@@ -482,10 +495,6 @@ footer .readMe a {
   background-color: #e2e879;
 }
 
-.selected {
-  border: 8px solid red;
-}
-
 .movieQuiz .movieQuestion {
   background-color: #fafafa;
 }
@@ -496,15 +505,15 @@ footer .readMe a {
           justify-content: center;
 }
 
-.movieQuiz .movieQuestion .optionsRow input[type=image] {
+.movieQuiz .movieQuestion .optionsRow input[type="image"] {
   border: 8px solid transparent;
 }
 
-.movieQuiz .movieQuestion .optionsRow input[type=image]:hover {
+.movieQuiz .movieQuestion .optionsRow input[type="image"]:hover {
   border: lightgreen solid 8px;
 }
 
-.movieQuiz .movieQuestion .optionsRow input[type=image]:focus {
+.movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
   border: #00c9a7 solid 8px;
 }
 
@@ -519,29 +528,31 @@ footer .readMe a {
   padding: 10px;
 }
 
-.movieQuiz .movieQuestion h3 {
+.movieQuiz .movieQuestion .questionRow h3 {
   font-weight: bold;
   padding: 20px;
 }
 
-.movieQuiz .movieQuestion label {
-  font-size: 2rem;
-  font-weight: bold;
-  padding-left: 10px;
-}
-
-.movieQuiz .movieQuestion .submitContainer {
+.movieQuiz .movieQuestion .submitRow {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
-.movieQuiz .movieQuestion .submitContainer .btnSubmit {
+.movieQuiz .movieQuestion .submitRow h3 {
+  padding: 5px;
+}
+
+.movieQuiz .movieQuestion .submitRow .btnSubmit {
   background-color: #6fb5d9;
   color: #fafafa;
   font-weight: 900;
   margin: 5px;
+}
+
+.movieQuiz .movieQuestion .submitRow .btnSubmit:disabled {
+  background-color: lightgray;
 }
 
 .movieQuiz .movieQuestion .movieOption {
@@ -551,6 +562,14 @@ footer .readMe a {
 .movieQuiz .movieQuestion .movieOption p {
   padding-top: 10px;
   font-size: 1.5rem;
+}
+
+.correctResponse {
+  background-color: forestgreen;
+}
+
+.incorrectResponse {
+  background-color: red;
 }
 
 .readMe {
