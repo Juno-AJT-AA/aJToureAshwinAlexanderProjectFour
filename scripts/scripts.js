@@ -11,10 +11,10 @@ radMovieQuiz.NinetiesMovieArray = []; //90s movie array
 
 
 //The Movie Database API Call URLs. See themoviedb.org for API docs
-radMovieQuiz.eightiesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01`;
-radMovieQuiz.oughtsUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2003-12-31&primary_release_date.gte=2000-01-01`;
+radMovieQuiz.eightiesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01&with_original_language=en`;
+radMovieQuiz.oughtsUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2003-12-31&primary_release_date.gte=2000-01-01&with_original_language=en`;
 radMovieQuiz.nonNinetiesURLArray = [];
-radMovieQuiz.ninetiesURl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01&page=`;
+radMovieQuiz.ninetiesURl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&primary_release_date.lte=1999-12-31&primary_release_date.gte=1990-01-01&with_original_language=en&page=`;
 radMovieQuiz.ninetiesURLArray = [];
 
 //helper method to append page number to 90s movies API call parameters
@@ -140,15 +140,29 @@ radMovieQuiz.scrollAway = function(from, to) {
 radMovieQuiz.displayQuiz = (arrayMovies) => {
     if (arrayMovies.length == 4) {
         $('.movieOptionOne input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[0].poster_path));
+        $('.movieOptionOne input[type=image]').attr("alt", arrayMovies[0].title);
+        $('.movieOptionOne p').text(arrayMovies[0].title);
         $('.movieOptionTwo input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[1].poster_path));
+        $('.movieOptionTwo input[type=image]').attr("alt", arrayMovies[1].title);
+        $('.movieOptionTwo p').text(arrayMovies[1].title);
         $('.movieOptionThree input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[2].poster_path));
+        $('.movieOptionThree input[type=image]').attr("alt", arrayMovies[2].title);
+        $('.movieOptionThree p').text(arrayMovies[2].title);
         $('.movieOptionFour input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[3].poster_path));
+        $('.movieOptionFour input[type=image]').attr("alt", arrayMovies[3].title);
+        $('.movieOptionFour p').text(arrayMovies[3].title);
     }
 }
 
 radMovieQuiz.eventListener = function() {
     //event listener for the Get Started button
     radMovieQuiz.scrollAway(".btnStart", '.movieQuiz');
+
+    //when a movie is in focus
+    $('input[type=image]').on('focus', function(e) {
+        e.preventDefault();
+
+    });
 
 
     //on submitting the form
@@ -159,6 +173,16 @@ radMovieQuiz.eventListener = function() {
     });
 }
 
+//helper function to shuffle elements within an array (Fisher-Yates shuffle)
+//source: https://javascript.info/task/shuffle 
+radMovieQuiz.shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+        // swap elements array[i] and array[j]
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 
 //init function - on first load
@@ -166,7 +190,7 @@ radMovieQuiz.init = async function() {
     await radMovieQuiz.GetMovies(); //wait for all the results from the multiple API calls
     let ninetiesMovies = radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
     let nonNinetiesMovies = radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
-    let allmovies = [...ninetiesMovies, ...nonNinetiesMovies];
+    let allmovies = radMovieQuiz.shuffle([...ninetiesMovies, ...nonNinetiesMovies]); //shuffle the movies in the array
     radMovieQuiz.displayQuiz(allmovies);
 
 
