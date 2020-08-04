@@ -15,16 +15,12 @@
     }
 }
 
-.selected {
-    border: 8px solid red;
-}
-
 .movieQuiz {
     .movieQuestion {
         background-color: $light-color;
         .optionsRow {
             justify-content: center;
-            input[type=image] {
+            input[type="image"] {
                 border: 8px solid transparent;
                 &:hover {
                     border: $hover-color solid 8px;
@@ -40,14 +36,17 @@
             a {
                 padding: 10px;
             }
-        }
-        h3 {
-            font-weight: bold;
-            padding: 20px;
+            h3 {
+                font-weight: bold;
+                padding: 20px;
+            }
         }
         .submitRow {
             justify-content: center;
             padding-top: 10px;
+            h3 {
+                padding: 5px;
+            }
             //submit and play again buttons
             .btnSubmit {
                 background-color: $primary-color;
@@ -64,8 +63,15 @@
             p {
                 padding-top: 10px;
                 font-size: 1.5rem;
-                ;
             }
         }
     }
+}
+
+.correctResponse {
+    background-color: forestgreen;
+}
+
+.incorrectResponse {
+    background-color: red;
 }
