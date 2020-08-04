@@ -139,12 +139,11 @@ radMovieQuiz.scrollAway = function(from, to) {
 //output: write to page
 radMovieQuiz.displayQuiz = (arrayMovies) => {
     if (arrayMovies.length == 4) {
-        $('.movieOptionOne img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[0].poster_path));
-        $('.movieOptionTwo img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[1].poster_path));
-        $('.movieOptionThree img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[2].poster_path));
-        $('.movieOptionFour img').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[3].poster_path));
+        $('.movieOptionOne input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[0].poster_path));
+        $('.movieOptionTwo input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[1].poster_path));
+        $('.movieOptionThree input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[2].poster_path));
+        $('.movieOptionFour input[type=image]').attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[3].poster_path));
     }
-
 }
 
 radMovieQuiz.eventListener = function() {
@@ -152,10 +151,6 @@ radMovieQuiz.eventListener = function() {
     radMovieQuiz.scrollAway(".btnStart", '.movieQuiz');
 
 
-    $('.movieOption img').on('click', function(e) {
-        e.preventDefault();
-        alert('reached here');
-    });
 
     //on submitting the form
     $('form').on('submit', function(e) {
