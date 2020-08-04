@@ -1,12 +1,39 @@
+@media (max-width: 1000px) {
+    h1 {
+        font-size: 2rem;
+    }
+}
+
 @media (max-width: 830px) {
     .optionsRow {
         display: flex;
         flex-wrap: wrap;
+    }
+    .flexRow {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2,
+    p,
+    a {
+        font-size: 1.6rem;
     }
 }
 
 @media (max-width: 700px) {
     .optionsRow {
         display: block;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2,
+    p,
+    a {
+        font-size: 1.6rem;
     }
 }
