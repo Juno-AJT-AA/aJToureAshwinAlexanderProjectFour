@@ -15,10 +15,6 @@
     }
 }
 
-//STYLE OF POSTERS ON LOAD
-//STYLE FOR SELECTED POSTER
-//STYLE FOR AFTER SUBMIT - TWO CLASSES - WRONG POSTER STYLE (THREE OF THEM) - CORRECT MOVIE STYLE (ONE)
-// the quiz questions and associated options
 .selected {
     border: 8px solid red;
 }
@@ -30,7 +26,6 @@
             justify-content: center;
             input[type=image] {
                 border: 8px solid transparent;
-
                 &:hover {
                     border: $hover-color solid 8px;
                 }
@@ -50,19 +45,18 @@
             font-weight: bold;
             padding: 20px;
         }
-        label {
-            font-size: 2rem;
-            font-weight: bold;
-            padding-left: 10px;
-        }
-        .submitContainer {
+        .submitRow {
             justify-content: center;
-            padding-top: 40px;
+            padding-top: 10px;
+            //submit and play again buttons
             .btnSubmit {
                 background-color: $primary-color;
                 color: $light-color;
                 font-weight: 900;
                 margin: 5px;
+                &:disabled {
+                    background-color: lightgray;
+                }
             }
         }
         .movieOption {

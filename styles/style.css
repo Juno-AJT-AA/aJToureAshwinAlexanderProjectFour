@@ -430,6 +430,16 @@ button:hover {
   color: #6fb5d9;
 }
 
+button:focus {
+  border: 4px solid #ddceeb;
+  color: #6fb5d9;
+}
+
+button:disabled {
+  border: 4px solid #ddceeb;
+  color: red;
+}
+
 a {
   font-size: 1.8rem;
   display: inline-block;
@@ -524,24 +534,22 @@ footer .readMe a {
   padding: 20px;
 }
 
-.movieQuiz .movieQuestion label {
-  font-size: 2rem;
-  font-weight: bold;
-  padding-left: 10px;
-}
-
-.movieQuiz .movieQuestion .submitContainer {
+.movieQuiz .movieQuestion .submitRow {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
-.movieQuiz .movieQuestion .submitContainer .btnSubmit {
+.movieQuiz .movieQuestion .submitRow .btnSubmit {
   background-color: #6fb5d9;
   color: #fafafa;
   font-weight: 900;
   margin: 5px;
+}
+
+.movieQuiz .movieQuestion .submitRow .btnSubmit:disabled {
+  background-color: lightgray;
 }
 
 .movieQuiz .movieQuestion .movieOption {
