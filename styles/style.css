@@ -348,6 +348,7 @@ html {
   margin: 0px auto;
 }
 
+input[type=image],
 img {
   width: 100%;
   display: block;
@@ -495,8 +496,16 @@ footer .readMe a {
           justify-content: center;
 }
 
-.movieQuiz .movieQuestion .optionsRow img {
+.movieQuiz .movieQuestion .optionsRow input[type=image] {
   border: 8px solid transparent;
+}
+
+.movieQuiz .movieQuestion .optionsRow input[type=image]:hover {
+  border: lightgreen solid 8px;
+}
+
+.movieQuiz .movieQuestion .optionsRow input[type=image]:focus {
+  border: #00c9a7 solid 8px;
 }
 
 .movieQuiz .movieQuestion .questionRow {
