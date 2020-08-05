@@ -2,6 +2,8 @@
 .quizIntro {
   .quizShortDesc {
     background-color: $primary-color;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 20px;

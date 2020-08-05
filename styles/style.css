@@ -463,6 +463,13 @@ footer .readMe a {
 
 .quizIntro .quizShortDesc {
   background-color: #6fb5d9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -557,14 +564,14 @@ footer .readMe a {
 }
 
 .readMe h2 {
-  padding: 20px 0px;
+  padding: 40px 0px 10px 0px;
   margin: 0px;
 }
 
 .readMe img {
   padding: 20px;
   max-width: 100%;
-  width: 100px;
+  width: 150px;
 }
 
 .readMe p,
@@ -588,8 +595,30 @@ footer .readMe a {
 }
 
 @media (max-width: 1000px) {
-  h1 {
+  h1, button {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 920px) {
+  .quizShortDesc {
+    padding: 10px;
+  }
+  .quizShortDesc h2 {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 910px) {
+  .quizIntro .quizShortDesc {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .quizIntro button {
+    padding: 5px 10px;
+    margin-top: 10px;
   }
 }
 
@@ -632,5 +661,17 @@ footer .readMe a {
   p,
   a {
     font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .quizIntro .quizShortDesc {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: large;
   }
 }
