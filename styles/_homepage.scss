@@ -32,8 +32,6 @@
                     padding: 50px;
                 }
             }
-            padding-top: 30px;
-            padding-bottom: 30px;
         }
         .questionRow {
             justify-content: center;
@@ -46,13 +44,12 @@
                 padding: 20px;
             }
         }
-
         .submitRow {
             justify-content: center;
             padding-top: 10px;
             h3 {
                 font-weight: bold;
-                padding: 30px;
+                padding: 10px;
             }
             //submit and play again buttons
             .btnSubmit {
@@ -82,4 +79,8 @@
 
 .incorrectResponse {
     background-color: red;
+}
+
+.focusAnswer {
+    border: 8px solid red;
 }

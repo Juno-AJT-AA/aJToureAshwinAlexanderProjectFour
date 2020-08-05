@@ -7,10 +7,13 @@
     p,
     a,
     ul li {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
         font-family: $secondary-font;
     }
     p {
-        line-height: 1.2rem;
+        line-height: 1.6rem;
+    }
+    .credits {
+        font-size: 1.6rem;
     }
 }
