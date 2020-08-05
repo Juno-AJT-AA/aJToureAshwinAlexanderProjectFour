@@ -47,7 +47,6 @@ h3 {
 }
 
 //body text
-input[type="radio"],
 p {
   font-size: 1.8rem;
   line-height: 2.8rem;
@@ -71,9 +70,7 @@ button {
     color: $primary-color;
   }
 
-  &:disabled {
-    background-color: $disabled-color;
-  }
+ 
 }
 
 a {
