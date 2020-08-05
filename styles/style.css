@@ -310,32 +310,9 @@ textarea {
   padding: 0.2em 0;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: "";
-  clear: both;
-  height: 0;
-}
-
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-.visuallyHidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  -webkit-clip-path: inset(100%);
-          clip-path: inset(100%);
-  clip: rect(0 0 0);
-  overflow: hidden;
 }
 
 html {
@@ -409,15 +386,14 @@ h2 {
 h3 {
   font-size: 2rem;
   text-transform: uppercase;
-  color: white;
   font-weight: 500;
 }
 
-input[type=radio],
+input[type="radio"],
 p {
   font-size: 1.8rem;
   line-height: 2.8rem;
-  letter-spacing: .02rem;
+  letter-spacing: 0.02rem;
 }
 
 button {
@@ -431,18 +407,17 @@ button {
 }
 
 button:hover {
-  border: 4px solid #ff8636;
+  border: 4px solid lightgreen;
   color: #6fb5d9;
 }
 
 button:focus {
-  border: 4px solid #ff8636;
+  border: 4px solid lightgreen;
   color: #6fb5d9;
 }
 
 button:disabled {
-  border: 4px solid #ff8636;
-  color: red;
+  background-color: darkgray;
 }
 
 a {
@@ -496,7 +471,7 @@ footer .readMe a {
   padding: 20px 10px;
   background-color: #fdfb76;
   letter-spacing: 0.5rem;
-  color: 284052;
+  color: #191919;
 }
 
 .movieQuiz .movieQuestion {
@@ -513,11 +488,7 @@ footer .readMe a {
   border: 8px solid transparent;
 }
 
-.movieQuiz .movieQuestion .optionsRow input[type="image"]:hover {
-  border: lightgreen solid 8px;
-}
-
-.movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
+.movieQuiz .movieQuestion .optionsRow input[type="image"]:hover, .movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
   border: lightgreen solid 8px;
 }
 
@@ -548,7 +519,7 @@ footer .readMe a {
 }
 
 .movieQuiz .movieQuestion .submitRow .btnSubmit:disabled {
-  background-color: lightgray;
+  background-color: darkgray;
 }
 
 .movieQuiz .movieQuestion .movieOption {
@@ -556,21 +527,20 @@ footer .readMe a {
 }
 
 .movieQuiz .movieQuestion .movieOption div {
-  border: 8px solid white;
+  border: 8px solid #fafafa;
   font-size: 1.6rem;
   padding: 5px;
 }
 
-.focusAnswer {
-  color: white;
-  background-color: red;
+.focusAnswer,
+.correctAnswer {
+  color: #fafafa;
+  background-color: #ff8636;
   text-align: center;
 }
 
 .correctAnswer {
-  color: white;
-  background-color: green;
-  text-align: center;
+  background-color: forestgreen;
 }
 
 .readMe {
