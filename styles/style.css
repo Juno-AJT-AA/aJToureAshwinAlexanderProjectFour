@@ -310,15 +310,6 @@ textarea {
   padding: 0.2em 0;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: "";
-  clear: both;
-  height: 0;
-}
-
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -409,15 +400,13 @@ h2 {
 h3 {
   font-size: 2rem;
   text-transform: uppercase;
-  color: white;
   font-weight: 500;
 }
 
-input[type=radio],
 p {
   font-size: 1.8rem;
   line-height: 2.8rem;
-  letter-spacing: .02rem;
+  letter-spacing: 0.02rem;
 }
 
 button {
@@ -431,18 +420,13 @@ button {
 }
 
 button:hover {
-  border: 4px solid #ff8636;
+  border: 4px solid lightgreen;
   color: #6fb5d9;
 }
 
 button:focus {
-  border: 4px solid #ff8636;
+  border: 4px solid lightgreen;
   color: #6fb5d9;
-}
-
-button:disabled {
-  border: 4px solid #ff8636;
-  color: red;
 }
 
 a {
@@ -474,11 +458,18 @@ footer .readMe {
 
 footer .readMe p,
 footer .readMe a {
-  color: #fafafa;
+  color: #191919;
 }
 
 .quizIntro .quizShortDesc {
   background-color: #6fb5d9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -493,10 +484,10 @@ footer .readMe a {
 }
 
 .quizIntro .quizLongDesc {
-  padding: 30px;
+  padding: 20px 10px;
   background-color: #fdfb76;
   letter-spacing: 0.5rem;
-  color: 284052;
+  color: #191919;
 }
 
 .movieQuiz .movieQuestion {
@@ -513,13 +504,8 @@ footer .readMe a {
   border: 8px solid transparent;
 }
 
-.movieQuiz .movieQuestion .optionsRow input[type="image"]:hover {
+.movieQuiz .movieQuestion .optionsRow input[type="image"]:hover, .movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
   border: lightgreen solid 8px;
-}
-
-.movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
-  border: #00c9a7 solid 8px;
-  padding: 50px;
 }
 
 .movieQuiz .movieQuestion .questionRow {
@@ -529,13 +515,9 @@ footer .readMe a {
   background-color: #ff8636;
 }
 
-.movieQuiz .movieQuestion .questionRow a {
-  padding: 10px;
-}
-
 .movieQuiz .movieQuestion .questionRow h3 {
   font-weight: bold;
-  padding: 20px;
+  padding: 10px;
 }
 
 .movieQuiz .movieQuestion .submitRow {
@@ -543,11 +525,6 @@ footer .readMe a {
       -ms-flex-pack: center;
           justify-content: center;
   padding-top: 10px;
-}
-
-.movieQuiz .movieQuestion .submitRow h3 {
-  font-weight: bold;
-  padding: 10px;
 }
 
 .movieQuiz .movieQuestion .submitRow .btnSubmit {
@@ -558,28 +535,28 @@ footer .readMe a {
 }
 
 .movieQuiz .movieQuestion .submitRow .btnSubmit:disabled {
-  background-color: lightgray;
+  background-color: darkgray;
 }
 
 .movieQuiz .movieQuestion .movieOption {
-  padding: 20px 0px 20px 0px;
+  padding: 10px 5px 10px 5px;
 }
 
-.movieQuiz .movieQuestion .movieOption p {
-  padding-top: 10px;
+.movieQuiz .movieQuestion .movieOption div {
+  border: 8px solid #fafafa;
   font-size: 1.6rem;
+  padding: 5px;
 }
 
-.correctResponse {
+.focusAnswer,
+.correctAnswer {
+  color: #fafafa;
+  background-color: #ff8636;
+  text-align: center;
+}
+
+.correctAnswer {
   background-color: forestgreen;
-}
-
-.incorrectResponse {
-  background-color: red;
-}
-
-.focusAnswer {
-  border: 8px solid red;
 }
 
 .readMe {
@@ -587,28 +564,61 @@ footer .readMe a {
 }
 
 .readMe h2 {
-  padding: 20px 0px;
+  padding: 40px 0px 10px 0px;
   margin: 0px;
 }
 
+.readMe img {
+  padding: 20px;
+  max-width: 100%;
+  width: 150px;
+}
+
 .readMe p,
-.readMe a,
-.readMe ul li {
-  font-size: 1.6rem;
+.readMe a {
+  font-size: 1.8rem;
   font-family: "Kanit", sans-serif;
 }
 
 .readMe p {
-  line-height: 1.6rem;
+  line-height: 1.8rem;
+}
+
+.readMe .flexColumn {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .readMe .credits {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 @media (max-width: 1000px) {
-  h1 {
+  h1, button {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 920px) {
+  .quizShortDesc {
+    padding: 10px;
+  }
+  .quizShortDesc h2 {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 910px) {
+  .quizIntro .quizShortDesc {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .quizIntro button {
+    padding: 5px 10px;
+    margin-top: 10px;
   }
 }
 
@@ -651,5 +661,17 @@ footer .readMe a {
   p,
   a {
     font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .quizIntro .quizShortDesc {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: large;
   }
 }

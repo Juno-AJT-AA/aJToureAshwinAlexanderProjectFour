@@ -1,86 +1,78 @@
 // introduction section
 .quizIntro {
-    .quizShortDesc {
-        background-color: $primary-color;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px;
-        h2 {
-            color: $light-color;
-        }
+  .quizShortDesc {
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    h2 {
+      color: $light-color;
     }
-    .quizLongDesc {
-        padding: 30px;
-        background-color: $tertiary-color;
-        letter-spacing: 0.5rem;
-        color: $dark-text;
-    }
+  }
+  .quizLongDesc {
+    padding: 20px 10px;
+    background-color: $tertiary-color;
+    letter-spacing: 0.5rem;
+    color: $dark-color;
+  }
 }
 
 .movieQuiz {
-    .movieQuestion {
-        background-color: $light-color;
-        .optionsRow {
-            justify-content: center;
-            input[type="image"] {
-                border: 8px solid transparent;
-                &:hover {
-                    border: $hover-color solid 8px;
-                }
-                &:focus {
-                    border: $focus-color solid 8px;
-                    padding: 50px;
-                }
-            }
+  .movieQuestion {
+    background-color: $light-color;
+    .optionsRow {
+      justify-content: center;
+      input[type="image"] {
+        border: 8px solid transparent;
+        &:hover,
+        &:focus {
+          border: $hover-color solid 8px;
         }
-        .questionRow {
-            justify-content: center;
-            background-color: $accent-color;
-            a {
-                padding: 10px;
-            }
-            h3 {
-                font-weight: bold;
-                padding: 20px;
-            }
-        }
-        .submitRow {
-            justify-content: center;
-            padding-top: 10px;
-            h3 {
-                font-weight: bold;
-                padding: 10px;
-            }
-            //submit and play again buttons
-            .btnSubmit {
-                background-color: $primary-color;
-                color: $light-color;
-                font-weight: 900;
-                margin: 5px;
-                &:disabled {
-                    background-color: lightgray;
-                }
-            }
-        }
-        .movieOption {
-            padding: 20px 0px 20px 0px;
-            p {
-                padding-top: 10px;
-                font-size: 1.6rem;
-                ;
-            }
-        }
+      }
     }
+    .questionRow {
+      justify-content: center;
+      background-color: $accent-color;
+      h3 {
+        font-weight: bold;
+        padding: 10px;
+      }
+    }
+    .submitRow {
+      justify-content: center;
+      padding-top: 10px;
+
+      //submit and play again buttons
+      .btnSubmit {
+        background-color: $primary-color;
+        color: $light-color;
+        font-weight: 900;
+        margin: 5px;
+        &:disabled {
+          background-color: $disabled-color;
+        }
+      }
+    }
+    .movieOption {
+      padding: 10px 5px 10px 5px;
+      div {
+        border: 8px solid $light-color;
+        font-size: 1.6rem;
+        padding: 5px;
+      }
+    }
+  }
 }
 
-.correctResponse {
-    background-color: forestgreen;
+.focusAnswer,
+.correctAnswer {
+  color: $light-color;
+  background-color: $failure-color;
+  text-align: center;
 }
 
-.incorrectResponse {
-    background-color: red;
-}
-
-.focusAnswer {
-    border: 8px solid red;
+.correctAnswer {
+  background-color: $success-color;
 }
