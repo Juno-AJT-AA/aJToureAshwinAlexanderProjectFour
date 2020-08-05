@@ -518,7 +518,7 @@ footer .readMe a {
 }
 
 .movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
-  border: #00c9a7 solid 8px;
+  border: lightgreen solid 8px;
 }
 
 .movieQuiz .movieQuestion .questionRow {

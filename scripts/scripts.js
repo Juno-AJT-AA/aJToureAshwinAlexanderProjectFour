@@ -14,6 +14,7 @@ radMovieQuiz.NinetiesMovieArray = []; //90s movie array
 radMovieQuiz.selectedMovie; //holds the user selected movie object (assigned on focus)
 radMovieQuiz.finalFour = []; //holds the four random movies
 radMovieQuiz.selectedMovieIndex; //holds the index of the movie in focus
+radMovieQuiz.IsQuizOn = true; //flag to check if the quiz questions are to be served and evaluated
 
 //the Movie Database API Call URLs. See themoviedb.org for API docs
 radMovieQuiz.eightiesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${radMovieQuiz.apikey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=1989-12-31&primary_release_date.gte=1987-01-01&with_original_language=en`;
@@ -142,7 +143,11 @@ radMovieQuiz.scrollAway = function (from, to) {
 
 //input: two arrays with correct and incorrect movies list
 //output: write to page
-radMovieQuiz.displayQuiz = (arrayMovies) => {
+radMovieQuiz.displayQuiz = () => {
+  let ninetiesMovies = radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
+  let nonNinetiesMovies = radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
+  let arrayMovies = radMovieQuiz.shuffle([...ninetiesMovies, ...nonNinetiesMovies]); //shuffle the movies in the array
+
   if (arrayMovies.length == 4) {
     radMovieQuiz.finalFour = arrayMovies; //assigning the final four movies to a global object.
     $(".movieOptionOne input[type=image]").attr("src", radMovieQuiz.baseImageURL.concat(arrayMovies[0].poster_path));
@@ -175,12 +180,12 @@ radMovieQuiz.getAnswerIndex = function () {
 radMovieQuiz.styleRightWrong = () => {
   //first style the one in focus
 
-  $(`.movieOption:nth-of-type(${radMovieQuiz.selectedMovieIndex}) div`).text("Released: " + radMovieQuiz.finalFour[radMovieQuiz.selectedMovieIndex - 1].release_date + "Title" + radMovieQuiz.finalFour[radMovieQuiz.selectedMovieIndex - 1].title).addClass("focusAnswer");
+  $(`.movieOption:nth-of-type(${radMovieQuiz.selectedMovieIndex}) div`).text("❌ Released: " + radMovieQuiz.finalFour[radMovieQuiz.selectedMovieIndex - 1].release_date.split('-')[0]).addClass("focusAnswer");
   //next style the image that is correct 
   let answerIndex = radMovieQuiz.getAnswerIndex();
   let nthOfTypeValue = answerIndex + 1;
 
-  $(`.movieOption:nth-of-type(${nthOfTypeValue}) div`).text("Released: " + radMovieQuiz.finalFour[answerIndex].release_date).addClass("correctAnswer");;
+  $(`.movieOption:nth-of-type(${nthOfTypeValue}) div`).text("✔️ Released: " + radMovieQuiz.finalFour[answerIndex].release_date.split('-')[0]).addClass("correctAnswer");;
 
 
 };
@@ -191,20 +196,46 @@ radMovieQuiz.eventListener = function () {
 
   //when a movie is in focus save the selected movie
   $(".movieOption input[type=image]").on("click", function (e) {
+
     e.preventDefault();
-    radMovieQuiz.selectedMovieIndex = $(this).attr("index"); //values from 1 to 4
-    radMovieQuiz.selectedMovie = radMovieQuiz.finalFour[radMovieQuiz.selectedMovieIndex - 1];
-    $(".btnSubmit").attr("disabled", false);
+    if (radMovieQuiz.IsQuizOn) {
+      radMovieQuiz.selectedMovieIndex = $(this).attr("index"); //values from 1 to 4
+      radMovieQuiz.selectedMovie = radMovieQuiz.finalFour[radMovieQuiz.selectedMovieIndex - 1];
+      $(".btnSubmit").attr("disabled", false);
+    }
   });
 
   //on submitting the movie selection
   $("form").on("submit", function (e) {
     e.preventDefault();
-
-    radMovieQuiz.styleRightWrong();
+    if (radMovieQuiz.IsQuizOn) {
+      //show correct / incorrect answers
+      radMovieQuiz.styleRightWrong();
+      radMovieQuiz.resetEverything();
+    }
+    else {
+      //load new questions
+      radMovieQuiz.loadNextQuestion();
+    }
 
   });
 };
+
+radMovieQuiz.loadNextQuestion = () => {
+  radMovieQuiz.IsQuizOn = true;
+  radMovieQuiz.displayQuiz();
+  $(".btnSubmit").text("Submit");
+  $(".movieOption div").text("").removeClass();
+  $(".btnSubmit").prop('disabled', true);
+
+}
+
+
+//reset Submit button
+radMovieQuiz.resetEverything = () => {
+  $(".btnSubmit").text("Play Again");
+  radMovieQuiz.IsQuizOn = false;
+}
 
 //helper function to shuffle elements within an array (Fisher-Yates shuffle)
 //source: https://javascript.info/task/shuffle
@@ -220,13 +251,12 @@ radMovieQuiz.shuffle = (array) => {
 //init function - on first load
 radMovieQuiz.init = async function () {
   await radMovieQuiz.GetMovies(); //wait for all the results from the multiple API calls
-  let ninetiesMovies = radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
-  let nonNinetiesMovies = radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
-  let allmovies = radMovieQuiz.shuffle([
-    ...ninetiesMovies,
-    ...nonNinetiesMovies,
-  ]); //shuffle the movies in the array
-  radMovieQuiz.displayQuiz(allmovies);
+  // let ninetiesMovies = radMovieQuiz.getRandomMovies(3, radMovieQuiz.ninetiesMovieArray);
+  // let nonNinetiesMovies = radMovieQuiz.getRandomMovies(1, radMovieQuiz.nonNinetiesMovieArray);
+  // let allmovies = radMovieQuiz.shuffle([...ninetiesMovies,...nonNinetiesMovies]); //shuffle the movies in the array
+  // radMovieQuiz.displayQuiz(allmovies);
+
+  radMovieQuiz.displayQuiz();
 
   radMovieQuiz.eventListener();
 };

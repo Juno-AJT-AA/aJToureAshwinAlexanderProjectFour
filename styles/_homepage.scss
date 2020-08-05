@@ -28,7 +28,7 @@
                     border: $hover-color solid 8px;
                 }
                 &:focus {
-                    border: $focus-color solid 8px;
+                    border: $hover-color solid 8px;
                 }
             }
         }
