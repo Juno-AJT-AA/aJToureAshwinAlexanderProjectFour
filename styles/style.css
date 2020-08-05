@@ -561,19 +561,30 @@ footer .readMe a {
   margin: 0px;
 }
 
+.readMe img {
+  padding: 20px;
+  max-width: 100%;
+  width: 100px;
+}
+
 .readMe p,
-.readMe a,
-.readMe ul li {
-  font-size: 1.6rem;
+.readMe a {
+  font-size: 1.8rem;
   font-family: "Kanit", sans-serif;
 }
 
 .readMe p {
-  line-height: 1.6rem;
+  line-height: 1.8rem;
+}
+
+.readMe .flexColumn {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .readMe .credits {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 @media (max-width: 1000px) {

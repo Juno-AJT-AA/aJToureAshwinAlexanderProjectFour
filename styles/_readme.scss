@@ -4,16 +4,27 @@
         padding: 20px 0px;
         margin: 0px;
     }
+
+    img{
+        
+        padding: 20px;
+        max-width: 100%;
+        width: 100px;
+    }
     p,
-    a,
-    ul li {
-        font-size: 1.6rem;
+    a {
+        font-size: 1.8rem;
         font-family: $secondary-font;
     }
     p {
-        line-height: 1.6rem;
+        line-height: 1.8rem;
     }
+
+
+.flexColumn{
+    align-items: flex-start;
+}
+
     .credits {
-        font-size: 1.6rem;
-    }
+        font-size: 1.8rem;}
 }
