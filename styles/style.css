@@ -493,7 +493,7 @@ footer .readMe a {
 }
 
 .quizIntro .quizLongDesc {
-  padding: 30px;
+  padding: 20px 10px;
   background-color: #fdfb76;
   letter-spacing: 0.5rem;
   color: 284052;
@@ -519,7 +519,6 @@ footer .readMe a {
 
 .movieQuiz .movieQuestion .optionsRow input[type="image"]:focus {
   border: #00c9a7 solid 8px;
-  padding: 50px;
 }
 
 .movieQuiz .movieQuestion .questionRow {
@@ -529,13 +528,9 @@ footer .readMe a {
   background-color: #ff8636;
 }
 
-.movieQuiz .movieQuestion .questionRow a {
-  padding: 10px;
-}
-
 .movieQuiz .movieQuestion .questionRow h3 {
   font-weight: bold;
-  padding: 20px;
+  padding: 10px;
 }
 
 .movieQuiz .movieQuestion .submitRow {
@@ -543,11 +538,6 @@ footer .readMe a {
       -ms-flex-pack: center;
           justify-content: center;
   padding-top: 10px;
-}
-
-.movieQuiz .movieQuestion .submitRow h3 {
-  font-weight: bold;
-  padding: 10px;
 }
 
 .movieQuiz .movieQuestion .submitRow .btnSubmit {
@@ -562,24 +552,25 @@ footer .readMe a {
 }
 
 .movieQuiz .movieQuestion .movieOption {
-  padding: 20px 0px 20px 0px;
+  padding: 10px 5px 10px 5px;
 }
 
-.movieQuiz .movieQuestion .movieOption p {
-  padding-top: 10px;
+.movieQuiz .movieQuestion .movieOption div {
+  border: 8px solid white;
   font-size: 1.6rem;
-}
-
-.correctResponse {
-  background-color: forestgreen;
-}
-
-.incorrectResponse {
-  background-color: red;
+  padding: 5px;
 }
 
 .focusAnswer {
-  border: 8px solid red;
+  color: white;
+  background-color: red;
+  text-align: center;
+}
+
+.correctAnswer {
+  color: white;
+  background-color: green;
+  text-align: center;
 }
 
 .readMe {

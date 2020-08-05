@@ -10,7 +10,7 @@
         }
     }
     .quizLongDesc {
-        padding: 30px;
+        padding: 20px 10px;
         background-color: $tertiary-color;
         letter-spacing: 0.5rem;
         color: $dark-text;
@@ -29,28 +29,21 @@
                 }
                 &:focus {
                     border: $focus-color solid 8px;
-                    padding: 50px;
                 }
             }
         }
         .questionRow {
             justify-content: center;
             background-color: $accent-color;
-            a {
-                padding: 10px;
-            }
             h3 {
                 font-weight: bold;
-                padding: 20px;
+                padding: 10px;
             }
         }
         .submitRow {
             justify-content: center;
             padding-top: 10px;
-            h3 {
-                font-weight: bold;
-                padding: 10px;
-            }
+
             //submit and play again buttons
             .btnSubmit {
                 background-color: $primary-color;
@@ -63,24 +56,28 @@
             }
         }
         .movieOption {
-            padding: 20px 0px 20px 0px;
-            p {
-                padding-top: 10px;
+            padding: 10px 5px 10px 5px;
+            div {
+                border: 8px solid white;
                 font-size: 1.6rem;
-                ;
+                padding: 5px;
+                
             }
         }
     }
 }
 
-.correctResponse {
-    background-color: forestgreen;
-}
-
-.incorrectResponse {
-    background-color: red;
-}
 
 .focusAnswer {
-    border: 8px solid red;
+    color: white;
+    background-color: red;
+    text-align: center;
+
+}
+
+.correctAnswer{
+    color: white;
+    background-color: green;
+    text-align: center;
+
 }
